@@ -9,7 +9,7 @@ def test_plan_json():
             "properties": {
                 "node": {
                     "type": "string",
-                    "description": "",
+                    "description": "The type of node to generate",
                     "enum": ["TestPlanNode"]
                 },
                 "node_id": {

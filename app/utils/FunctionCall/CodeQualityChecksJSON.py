@@ -9,7 +9,7 @@ def code_quality_checks_json():
             "properties": {
                 "node": {
                     "type": "string",
-                    "description": "",
+                    "description": "The type of node to generate",
                     "enum": ["CodeQualityChecksNode"]
                 },
                 "node_id": {

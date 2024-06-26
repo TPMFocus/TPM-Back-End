@@ -9,7 +9,7 @@ def manual_step_json():
             "properties": {
                 "node": {
                     "type": "string",
-                    "description": "",
+                    "description": "The type of node to generate",
                     "enum": ["TestStepNode"],
                 },
                 "node_id": {

@@ -9,7 +9,7 @@ def note_json():
             "properties": {
                 "node": {
                     "type": "string",
-                    "description": "",
+                    "description": "The type of node to generate",
                     "enum": ["stickyNote"]
                 },
                 "node_id": {

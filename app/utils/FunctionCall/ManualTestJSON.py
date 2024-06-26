@@ -9,7 +9,7 @@ def manual_test_json():
             "properties": {
                 "node": {
                     "type": "string",
-                    "description": "",
+                    "description": "The type of node to generate",
                     "enum": ["ManualTestCaseNode"]
                 },
                 "node_id": {

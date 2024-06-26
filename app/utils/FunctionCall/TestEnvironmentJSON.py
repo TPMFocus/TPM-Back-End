@@ -9,7 +9,7 @@ def test_environment_json():
             "properties": {
                 "node": {
                     "type": "string",
-                    "description": "",
+                    "description": "The type of node to generate",
                     "enum": ["TestEnvironmentNode"]
                 },
                 "node_id": {

@@ -9,7 +9,7 @@ def unit_test_json():
             "properties": {
                 "node": {
                     "type": "string",
-                    "description": "",
+                    "description": "The type of node to generate",
                     "enum": ["UnitTestNode"]
                 },
                 "node_id": {

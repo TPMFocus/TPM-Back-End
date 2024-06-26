@@ -9,7 +9,7 @@ def ui_interactions_json():
             "properties": {
                 "node": {
                     "type": "string",
-                    "description": "",
+                    "description": "The type of node to generate",
                     "enum": ["UIInteractionNode"]
                 },
                 "node_id": {

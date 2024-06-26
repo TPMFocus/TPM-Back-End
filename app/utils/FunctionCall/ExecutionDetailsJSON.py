@@ -9,7 +9,7 @@ def execution_details_json():
             "properties": {
                 "node": {
                     "type": "string",
-                    "description": "",
+                    "description": "The type of node to generate",
                     "enum": ["ExecutionDetailsNode"]
                 },
                 "node_id": {
