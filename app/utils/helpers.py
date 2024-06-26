@@ -23,7 +23,7 @@ def extract_json_objects(text):
   return extracted_objects
 
 def convert():
-    Model2Workflow()
+  Model2Workflow()
 
 def convertWorkflow():
-    Workflow2Model()
+  Workflow2Model()

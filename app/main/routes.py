@@ -21,9 +21,10 @@ def generate_text():
     if not data or 'session_id' not in data or 'prompt' not in data:
         return jsonify({"error": "Invalid input"}), 400
 
-    json_data_string, assistant_message_content = ai_service.generate_text(data)
+    json_data_string, assistant_message_content = ai_service.generate_func_call(data)
     
     database_service.update_chat_flow(data['session_id'], json_data_string)
+    database_service.add_message(data['session_id'], 'user', data['prompt'], data['session_id']) # Add user message to chat history
     assistant_message = database_service.add_message(data['session_id'], 'assistant', assistant_message_content, data['session_id'])
 
     return jsonify({
@@ -40,3 +41,12 @@ def clear_chat():
 
     database_service.clear_chat(data['session_id'])
     return jsonify({"message": "Chat history has been cleared"})
+
+@bp.route('/clear-user-sessions', methods=['POST'])
+def clear_user_sessions():
+    data = request.get_json()
+    if not data or 'user_id' not in data:
+        return jsonify({"error": "User ID is required"}), 400
+
+    database_service.clear_user_sessions(data['user_id'])
+    return jsonify({"message": "User & user sessions have been cleared"})

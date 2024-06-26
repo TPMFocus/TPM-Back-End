@@ -22,5 +22,5 @@ def convert():
     final_structure_node, final_structure_edge = build(nodes_data)
     
     # Saving final_structure to a JSON file
-    with open('/home/adam_skandrani/tpm_back/tmp/final_structure.json', 'w') as file:
+    with open('/home/adam_skandrani/TPM-Flask-Backend/instance/tmp/final_structure.json', 'w') as file:
         json.dump({"nodes": final_structure_node, "edges": final_structure_edge}, file, indent=2)

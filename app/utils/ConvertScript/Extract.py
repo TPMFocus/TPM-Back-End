@@ -38,7 +38,7 @@ def extract_node_types(json_data_list):
     return node_types
 
 def extract_json_data():
-    file_path = '/home/adam_skandrani/tpm_back/tmp/json_response.json'
+    file_path = '/home/adam_skandrani/TPM-Flask-Backend/instance/tmp/json_response.json'
     with open(file_path) as f:
         json_data = f.read()
     return json_data

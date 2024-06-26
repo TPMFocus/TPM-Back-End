@@ -1,4 +1,5 @@
 import unittest
+from unittest.mock import patch, MagicMock
 import requests
 import uuid
 import os
@@ -15,8 +16,19 @@ class TestFlaskAPI(unittest.TestCase):
         self.user_id = str(uuid.uuid4())
         self.session_id = str(uuid.uuid4())
 
-    def test_start_session(self):
+    @patch('requests.post')
+    def test_start_session(self, mock_post):
         """Test the /start-session endpoint"""
+        # Mock response data
+        mock_response_data = {
+            "session_id": self.session_id
+        }
+
+        # Configure the mock to return a response with your mock data
+        mock_post.return_value = requests.Response()
+        mock_post.return_value.status_code = 200
+        mock_post.return_value.json = lambda: mock_response_data
+
         # Prepare the data for the request
         data = {
             "user_id": self.user_id,
@@ -39,45 +51,68 @@ class TestFlaskAPI(unittest.TestCase):
             # Check if the returned session_id matches the one we sent
             self.assertEqual(response_data["session_id"], self.session_id, 
                              "Returned session_id should match the one sent")
-            pass
+        except requests.exceptions.RequestException as e:
+            self.fail(f"Request to the /start-session endpoint failed: {e}")
+        except ValueError as e:
+            self.fail(f"Response is not valid JSON: {e}")
 
-        except Exception as e:
-            logging.error(f"Error in start_session: {str(e)}")
-            return jsonify({"error": "Internal server error"}), 500
 
-    def test_generate_text(self):
+    @patch('requests.post')
+    @patch('app.main.models.chat_flow.query.filter_by')
+    @patch('app.main.models.chat_message.query.filter_by')
+    def test_generate_text(self, mock_chat_message_query, mock_chat_flow_query, mock_post):
         """Test the /generate-text endpoint"""
+        
+        # Mock chat flow data
+        mock_chat_flow_entry = MagicMock()
+        mock_chat_flow_entry.flowData = '{"context": "sample context"}'
+        mock_chat_flow_query.return_value.first.return_value = mock_chat_flow_entry
+
+        # Mock chat messages data
+        mock_chat_message = MagicMock()
+        mock_chat_message.role = 'userMessage'
+        mock_chat_message.content = 'sample message'
+        mock_chat_message_query.return_value.all.return_value = [mock_chat_message]
+
+        # Mock response data from OpenAI API
+        mock_response_data = {
+            "generated_text": "This is a mock generated text.",
+            "chatId": "mockChatId123",
+            "createdDate": "2023-01-01T00:00:00Z"
+        }
+        mock_post.return_value = requests.Response()
+        mock_post.return_value.status_code = 200
+        mock_post.return_value.json = lambda: mock_response_data
+
         # Prepare the data for the request
         data = {
             "session_id": self.session_id,
-            "prompt": "Test prompt"
+            "prompt": "Generate me an empty note node."
         }
 
         try:
             # Send a POST request to the generate-text endpoint
             response = requests.post(f"{self.BASE_URL}/generate-text", json=data)
 
-            # Check if the request was successful (status code 200)
+            # Assertions
             self.assertEqual(response.status_code, 200, "Expected status code 200")
 
-            # Parse the JSON response
-            response_data = response.json()
+            try:
+                response_data = response.json()
+            except ValueError as e:
+                self.fail(f"Response is not valid JSON: {e}")
 
-            # Check if the response contains generated_text
             self.assertIn("generated_text", response_data, "Response should contain generated_text")
-
-            # Check if generated_text is a non-empty string
             self.assertIsInstance(response_data["generated_text"], str, "generated_text should be a string")
             self.assertTrue(len(response_data["generated_text"]) > 0, "generated_text should not be empty")
-
-            # Check if the response contains chatId and createdDate
             self.assertIn("chatId", response_data, "Response should contain chatId")
             self.assertIn("createdDate", response_data, "Response should contain createdDate")
-            pass
 
-        except Exception as e:
-            logging.error(f"Error in start_session: {str(e)}")
-            return jsonify({"error": "Internal server error"}), 500
+            # Additional checks for database interactions
+            mock_chat_flow_query.assert_called_once_with(id=self.session_id)
+            mock_chat_message_query.assert_called_once_with(chatflowid=self.session_id)
+        except requests.exceptions.RequestException as e:
+            self.fail(f"Request to the /generate-text endpoint failed: {e}")
 
     def test_clear_chat(self):
         """Test the /clear-chat endpoint"""
@@ -100,10 +135,10 @@ class TestFlaskAPI(unittest.TestCase):
             self.assertIn("message", response_data, "Response should contain a message")
             self.assertEqual(response_data["message"], "Chat history has been cleared", 
                              "Unexpected message in response")
-            pass
-        except Exception as e:
-            logging.error(f"Error in start_session: {str(e)}")
-            return jsonify({"error": "Internal server error"}), 500
+        except requests.exceptions.RequestException as e:
+            self.fail(f"Request to the /clear-chat endpoint failed: {e}")
+        except ValueError as e:
+            self.fail(f"Response is not valid JSON: {e}")
 
 if __name__ == "__main__":
     unittest.main()

@@ -36,7 +36,7 @@ def add_message(session_id, role, content, chatflowid=None):
             chatType='INTERNAL',
             chatId=str(uuid.uuid4())
         )
-        db.session.add(flowise_message)
+        
 
     db.session.commit()
     return flowise_message if chatflowid else user_message
@@ -44,6 +44,11 @@ def add_message(session_id, role, content, chatflowid=None):
 def clear_chat(session_id):
     ChatMessage.query.filter_by(session_id=session_id).delete()
     chat_message.query.filter_by(chatflowid=session_id).delete()
+    db.session.commit()
+
+def clear_user_sessions(user_id):
+    User.query.filter_by(id=user_id).delete()
+    Session.query.filter_by(user_id=user_id).delete()
     db.session.commit()
 
 def update_chat_flow(session_id, flow_data):
