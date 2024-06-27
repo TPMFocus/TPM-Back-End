@@ -20,7 +20,7 @@ def generate_text():
     data = request.get_json()
     if not data or 'session_id' not in data or 'prompt' not in data:
         return jsonify({"error": "Invalid input"}), 400
-
+    
     json_data_string, assistant_message_content = ai_service.generate_func_call(data)
     
     database_service.update_chat_flow(data['session_id'], json_data_string)

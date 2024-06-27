@@ -7,7 +7,7 @@ def generate_code_quality_checks_structure(node_id):
       "id": "{}".format(node_id),
       "position": {
         "x": 1600,
-        "y": -int(node_id) * 450
+        "y": 450
       },
       "type": "customNode",
       "data": {
@@ -157,7 +157,7 @@ def generate_code_quality_checks_structure(node_id):
       "height": 735,
       "positionAbsolute": {
         "x": 1600,
-        "y": -int(node_id) * 450
+        "y": 450
       },
       "selected": false,
       "dragging": false

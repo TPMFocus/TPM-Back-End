@@ -9,7 +9,7 @@ def test_suite_json():
             "properties": {
                 "node": {
                     "type": "string",
-                    "description": "The type of node to generate",
+                    "description": "The type of node to generate, is required to be 'TestSuiteNode'",
                     "enum": ["TestSuiteNode"]
                 },
                 "node_id": {

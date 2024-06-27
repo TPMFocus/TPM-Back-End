@@ -9,7 +9,7 @@ def backend_integration_test_json():
                 "properties": {
                     "node": {
                         "type": "string",
-                        "description": "The type of node to generate",
+                        "description": "The type of node to generate, is required to be 'BackEndIntegrationTestNode'",
                         "enum": ["BackEndIntegrationTestNode"]
                     },
                     "node_id": {

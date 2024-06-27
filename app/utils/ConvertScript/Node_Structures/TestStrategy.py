@@ -7,7 +7,7 @@ def generate_test_strategy_structure(node_id):
       "id": "{}".format(node_id),
       "position": {
         "x": 0,
-        "y": -int(node_id) * 450
+        "y": 0
       },
       "type": "customNode",
       "data": {
@@ -70,7 +70,7 @@ def generate_test_strategy_structure(node_id):
       "selected": false,
       "positionAbsolute": {
         "x": 0,
-        "y": -int(node_id) * 450
+        "y": 0
       },
       "dragging": false
     }

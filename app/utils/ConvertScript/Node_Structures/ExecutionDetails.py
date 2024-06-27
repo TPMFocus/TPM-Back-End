@@ -7,7 +7,7 @@ def generate_execution_details_structure(node_id):
       "id": "{}".format(node_id),
       "position": {
         "x": 1200,
-        "y": -int(node_id) * 450
+        "y": 450
       },
       "type": "customNode",
       "data": {
@@ -92,7 +92,7 @@ def generate_execution_details_structure(node_id):
       "selected": false,
       "positionAbsolute": {
         "x": 1200,
-        "y": -int(node_id) * 450
+        "y": 450
       },
       "dragging": false
     }

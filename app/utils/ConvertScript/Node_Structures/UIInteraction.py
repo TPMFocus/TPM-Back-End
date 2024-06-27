@@ -7,7 +7,7 @@ def generate_ui_interaction_structure(node_id):
       "id": "{}".format(node_id),
       "position": {
         "x": 2400,
-        "y": -int(node_id) * 450
+        "y": 450
       },
       "type": "customNode",
       "data": {
@@ -175,7 +175,7 @@ def generate_ui_interaction_structure(node_id):
       "selected": false,
       "positionAbsolute": {
         "x": 2400,
-        "y": -int(node_id) * 450
+        "y": 450
       },
       "dragging": false
     }

@@ -164,7 +164,7 @@ def generate_func_call(data):
             return {"error": "Failed to fetch messages"}, 500
 
         # Ensure system instruction is included
-        system_instruction = "You are a QA engineer responsible for extracting relevant information from user prompt and mapping each element detected to its corresponding JSON format. Always fill the node type."
+        system_instruction = "You are a QA engineer responsible for extracting relevant information from user prompt and mapping each element detected to its corresponding JSON format. Always fill the node type. Do not forget to fill the node_id and next_node fields. The next_node field should contain the node_id of the next node in the workflow. If the user prompt is not detailed enough to create a fully detailed workflow, create the nodes based on the provided details. Example of a Partial Workflow:\n```json{\n  \"node\": \"NodeType\",\n  \"node_id\": \"\",\n  \"data\": {\n    // Specific attributes for the node type\n  },\n  \"next_node\": []\n}```"
         if not any(message['role'] == 'system' for message in messages):
             messages.insert(0, {"role": "system", "content": system_instruction})
 

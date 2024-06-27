@@ -7,7 +7,7 @@ def generate_test_environment_structure(node_id):
       "id": "{}".format(node_id),
       "position": {
         "x": 400,
-        "y": -int(node_id) * 450
+        "y": 450
       },
       "type": "customNode",
       "data": {
@@ -89,7 +89,7 @@ def generate_test_environment_structure(node_id):
       "selected": false,
       "positionAbsolute": {
         "x": 400,
-        "y": -int(node_id) * 450
+        "y": 450
       },
       "dragging": false
     }

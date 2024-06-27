@@ -7,7 +7,7 @@ def generate_bdd_test_structure(node_id):
       "id": "{}".format(node_id),
       "position": {
         "x": 2000,
-        "y": -int(node_id) * 450
+        "y": 450
       },
       "type": "customNode",
       "data": {
@@ -155,7 +155,7 @@ def generate_bdd_test_structure(node_id):
       "height": 558,
       "positionAbsolute": {
         "x": 2000,
-        "y": -int(node_id) * 450
+        "y": 450
       },
       "selected": false,
       "dragging": false

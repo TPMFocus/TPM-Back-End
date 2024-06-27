@@ -7,7 +7,7 @@ def generate_frontend_unit_test_structure(node_id):
       "id": "{}".format(node_id),
       "position": {
         "x": 2400,
-        "y": -int(node_id) * 450
+        "y": 450
       },
       "type": "customNode",
       "data": {
@@ -70,7 +70,7 @@ def generate_frontend_unit_test_structure(node_id):
       "height": 410,
       "positionAbsolute": {
         "x": 2400,
-        "y": -int(node_id) * 450
+        "y": 450
       },
       "selected": false
     }

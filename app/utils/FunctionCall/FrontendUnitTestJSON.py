@@ -9,7 +9,7 @@ def frontend_unit_test_json():
             "properties": {
                 "node": {
                     "type": "string",
-                    "description": "The type of node to generate",
+                    "description": "The type of node to generate, is required to be 'FrontEndUnitTestNode'",
                     "enum": ["FrontEndUnitTestNode"]
                 },
                 "node_id": {

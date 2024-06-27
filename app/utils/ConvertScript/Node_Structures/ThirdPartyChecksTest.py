@@ -7,7 +7,7 @@ def generate_third_party_checks_test_structure(node_id):
       "id": "{}".format(node_id),
       "position": {
         "x": 1600,
-        "y": -int(node_id) * 450
+        "y": 450
       },
       "type": "customNode",
       "data": {
@@ -118,7 +118,7 @@ def generate_third_party_checks_test_structure(node_id):
       "selected": false,
       "positionAbsolute": {
         "x": 1600,
-        "y": -int(node_id) * 450
+        "y": 450
       },
       "dragging": false
     }

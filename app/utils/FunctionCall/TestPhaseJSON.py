@@ -35,8 +35,12 @@ def test_phase_json():
                         "endDate": {
                             "type": "string",
                             "description": ""
+                        },
+                        "estimation": {
+                            "type": "string",
+                            "description": ""
                         }
-                }, "required": ["title", "description", "startDate", "endDate"]},
+                }, "required": ["title", "description", "startDate", "endDate", "estimation"]},
                 "next_node": {
                     "type": "array",
                     "items": {

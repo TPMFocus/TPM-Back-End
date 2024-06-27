@@ -7,7 +7,7 @@ def generate_test_plan_structure(node_id):
       "id": "{}".format(node_id),
       "position": {
         "x": 800,
-        "y": -int(node_id) * 450
+        "y": 450
       },
       "type": "customNode",
       "data": {
@@ -139,7 +139,7 @@ def generate_test_plan_structure(node_id):
       "selected": false,
       "positionAbsolute": {
         "x": 800,
-        "y": -int(node_id) * 450
+        "y": 450
       },
       "dragging": false
     }

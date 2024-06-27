@@ -7,7 +7,7 @@ def generate_note_structure(node_id):
       "id": "{}".format(node_id),
       "position": {
         "x": -400,
-        "y": -int(node_id) * 450
+        "y": 450
       },
       "type": "stickyNote",
       "data": {
@@ -52,7 +52,7 @@ def generate_note_structure(node_id):
       "height": 42,
       "positionAbsolute": {
         "x": -400,
-        "y": -int(node_id) * 450
+        "y": 450
       },
       "selected": false,
       "dragging": false

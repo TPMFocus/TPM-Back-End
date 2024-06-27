@@ -9,7 +9,7 @@ def ui_interactions_json():
             "properties": {
                 "node": {
                     "type": "string",
-                    "description": "The type of node to generate",
+                    "description": "The type of node to generate, is required to be 'UIInteractionNode'",
                     "enum": ["UIInteractionNode"]
                 },
                 "node_id": {
@@ -20,7 +20,7 @@ def ui_interactions_json():
                     "type": "object",
                     "description": "",
                     "properties": {
-                        "element": {
+                        "elementType": {
                             "type": "string",
                             "enum": ["Button", "Text field", "Link", "Dropdown menu", "Checkbox", "Radio Buttons", "Slider", "Toggle Switches", "Tab", "Popup", "Progress Bars"],
                             "description": ""
