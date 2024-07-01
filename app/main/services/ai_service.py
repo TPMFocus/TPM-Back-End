@@ -8,6 +8,9 @@ import json
 import os
 import logging
 
+# wsl_base_path : /home/adam_skandrani/TPM-Flask-Backend/
+base_path = 'C:/Users/Adam Skandrani/TPM-Flask-Backend'
+
 GPT_MODEL = "gpt-3.5-turbo-1106"
 client = OpenAI(api_key=os.getenv('API_KEY'))
 
@@ -25,7 +28,7 @@ def generate_text(data):
         context = chat_flow_entry.flowData
 
         # Write context to file
-        context_file = '/home/adam_skandrani/TPM-Flask-Backend/instance/tmp/context.json'
+        context_file = f'{base_path}/instance/tmp/context.json'
         try:
             with open(context_file, 'w') as file:
                 file.write(context)
@@ -41,7 +44,7 @@ def generate_text(data):
             return {"error": "Failed to convert workflow"}, 500
 
         # Read new context
-        new_context_file = '/home/adam_skandrani/TPM-Flask-Backend/instance/tmp/new_context.json'
+        new_context_file = f'{base_path}/instance/tmp/new_context.json'
         try:
             with open(new_context_file, 'r') as f:
                 new_context = f.read().replace('\n', '')
@@ -82,7 +85,7 @@ def generate_text(data):
         # Extract and save JSON response
         try:
             json_response = extract_json_objects(assistant_message_content)
-            response_file = '/home/adam_skandrani/TPM-Flask-Backend/instance/tmp/json_response.json'
+            response_file = f'{base_path}/instance/tmp/json_response.json'
             with open(response_file, 'w') as file:
                 json.dump(json_response, file)
         except Exception as e:
@@ -98,9 +101,9 @@ def generate_text(data):
 
         # Load final context and structure
         try:
-            with open('/home/adam_skandrani/TPM-Flask-Backend/instance/tmp/context.json', 'r') as f:
+            with open(f'{base_path}/instance/tmp/context.json', 'r') as f:
                 context_file = json.load(f)
-            with open('/home/adam_skandrani/TPM-Flask-Backend/instance/tmp/final_structure.json', 'r') as f:
+            with open(f'{base_path}/instance/tmp/final_structure.json', 'r') as f:
                 json_data_file = json.load(f)
         except Exception as e:
             logging.error(f"Failed to load final context or structure: {e}")
@@ -127,7 +130,7 @@ def generate_func_call(data):
         context = chat_flow_entry.flowData
 
         # Write context to file
-        context_file = '/home/adam_skandrani/TPM-Flask-Backend/instance/tmp/context.json'
+        context_file = f'{base_path}/instance/tmp/context.json'
         try:
             with open(context_file, 'w') as file:
                 file.write(context)
@@ -143,7 +146,7 @@ def generate_func_call(data):
             return {"error": "Failed to convert workflow"}, 500
 
         # Read new context
-        new_context_file = '/home/adam_skandrani/TPM-Flask-Backend/instance/tmp/new_context.json'
+        new_context_file = f'{base_path}/instance/tmp/new_context.json'
         try:
             with open(new_context_file, 'r') as f:
                 new_context = f.read().replace('\n', '')
@@ -164,7 +167,7 @@ def generate_func_call(data):
             return {"error": "Failed to fetch messages"}, 500
 
         # Ensure system instruction is included
-        system_instruction = "You are a QA engineer responsible for extracting relevant information from user prompt and mapping each element detected to its corresponding JSON format. Always fill the node type. Do not forget to fill the node_id and next_node fields. The next_node field should contain the node_id of the next node in the workflow. If the user prompt is not detailed enough to create a fully detailed workflow, create the nodes based on the provided details. Example of a Partial Workflow:\n```json{\n  \"node\": \"NodeType\",\n  \"node_id\": \"\",\n  \"data\": {\n    // Specific attributes for the node type\n  },\n  \"next_node\": []\n}```"
+        system_instruction = "You are a QA engineer responsible for extracting relevant information from user prompt and mapping each element detected to its corresponding JSON format. Always fill the node type. Do not forget to fill the node_id and next_node fields. The next_node field should contain the node_id of the next node in the workflow. If the user prompt is not detailed enough to create a fully detailed workflow, create the nodes based on the provided details."
         if not any(message['role'] == 'system' for message in messages):
             messages.insert(0, {"role": "system", "content": system_instruction})
 
@@ -198,7 +201,7 @@ def generate_func_call(data):
         # Extract and save JSON response
         try:
             json_response = extract_json_objects(assistant_message_content)
-            response_file = '/home/adam_skandrani/TPM-Flask-Backend/instance/tmp/json_response.json'
+            response_file = f'{base_path}/instance/tmp/json_response.json'
             with open(response_file, 'w') as file:
                 json.dump(json_response, file)
         except Exception as e:
@@ -214,9 +217,9 @@ def generate_func_call(data):
 
         # Load final context and structure
         try:
-            with open('/home/adam_skandrani/TPM-Flask-Backend/instance/tmp/context.json', 'r') as f:
+            with open(f'{base_path}/instance/tmp/context.json', 'r') as f:
                 context_file = json.load(f)
-            with open('/home/adam_skandrani/TPM-Flask-Backend/instance/tmp/final_structure.json', 'r') as f:
+            with open(f'{base_path}/instance/tmp/final_structure.json', 'r') as f:
                 json_data_file = json.load(f)
         except Exception as e:
             logging.error(f"Failed to load final context or structure: {e}")
