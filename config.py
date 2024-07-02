@@ -3,10 +3,14 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+# wsl_database_path : /home/adam_skandrani/.flowise/database.sqlite
+# database_path = 'C:/Users/Adam Skandrani/.flowise/database.sqlite'
+
+
 class Config:
     SQLALCHEMY_DATABASE_URI = 'sqlite:///chat.db'
     SQLALCHEMY_BINDS = {
-        'flowise': 'sqlite:////home/adam_skandrani/.flowise/database.sqlite',
+        'flowise': 'sqlite:///C:/Users/Adam Skandrani/.flowise/database.sqlite',
         'chat': 'sqlite:///chat.db'
     }
     SQLALCHEMY_TRACK_MODIFICATIONS = False

@@ -22,7 +22,7 @@ def note_json():
                     "properties": {
                         "note": {
                             "type": "string",
-                            "description": ""
+                            "description": "The contents of the note"
                         }
                 }, "required": ["note"]},
                 "next_node": {

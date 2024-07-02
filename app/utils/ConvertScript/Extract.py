@@ -1,6 +1,9 @@
 from app.utils.ConvertScript.Structure import *
 import json
 
+# wsl_base_path : /home/adam_skandrani/TPM-Flask-Backend
+base_path = 'C:/Users/Adam Skandrani/TPM-Flask-Backend'
+
 def extract_next_nodes(json_data_list):
     next_nodes = []
     for json_data in json_data_list:
@@ -38,7 +41,7 @@ def extract_node_types(json_data_list):
     return node_types
 
 def extract_json_data():
-    file_path = '/home/adam_skandrani/TPM-Flask-Backend/instance/tmp/json_response.json'
+    file_path = f'{base_path}/instance/tmp/json_response.json'
     with open(file_path) as f:
         json_data = f.read()
     return json_data

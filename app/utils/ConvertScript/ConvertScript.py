@@ -3,6 +3,9 @@ from app.utils.ConvertScript.Extract import *
 from app.utils.ConvertScript.Build import *
 import json
 
+# wsl_base_path : /home/adam_skandrani/TPM-Flask-Backend/
+base_path = 'C:/Users/Adam Skandrani/TPM-Flask-Backend'
+
 def convert():
     # Extracting data from the json file
     json_data_list = extract_json_data()  # Assuming this function returns the JSON string
@@ -22,5 +25,5 @@ def convert():
     final_structure_node, final_structure_edge = build(nodes_data)
     
     # Saving final_structure to a JSON file
-    with open('/home/adam_skandrani/TPM-Flask-Backend/instance/tmp/final_structure.json', 'w') as file:
+    with open(f'{base_path}/instance/tmp/final_structure.json', 'w') as file:
         json.dump({"nodes": final_structure_node, "edges": final_structure_edge}, file, indent=2)

@@ -46,7 +46,7 @@ def test_phase_json():
                     "items": {
                         "type": "string",
                     },
-                    "description": ""
+                    "description": "Followed by a test plan node if it exists, otherwise nothing."
                 },
             },
             "required": ["node", "node_id", "next_node"]

@@ -58,7 +58,7 @@ def test_plan_json():
                     "items": {
                         "type": "string",
                     },
-                    "description": ""
+                    "description": "Followed by a test suite if it exists, otherwise nothing."
                 },
             },
             "required": ["node", "node_id", "next_node"]

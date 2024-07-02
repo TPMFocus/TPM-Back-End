@@ -21,7 +21,7 @@ def manual_test_json():
                     "description": "",
                     "properties": {
                         "title": {
-                            "type": "number",
+                            "type": "string",
                             "description": ""
                         },
                         "priority": {

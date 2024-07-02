@@ -33,8 +33,12 @@ def ui_interactions_json():
                             "type": "string",
                             "enum": ["Click", "Type", "Drag & Drop", "Hover", "Select", "Swipe", "Scroll", "Zoom"],
                             "description": ""
+                        },
+                        "value": {
+                            "type": "string",
+                            "description": ""
                         }
-                }, "required": ["element", "identifier", "action"]},
+                }, "required": ["element", "identifier", "action", "value"]},
                 "next_node": {
                     "type": "array",
                     "items": {

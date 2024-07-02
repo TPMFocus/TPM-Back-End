@@ -1,7 +1,7 @@
 from openai import OpenAI
 from app import db
 from app.main.models import chat_message, chat_flow
-from app.utils.helpers import extract_json_objects, convert, convertWorkflow
+from app.utils.helpers import extract_json_objects, convert, convertWorkflow, update_context, concat_elements
 from app.utils.FunctionCall.openiai_tools import get_function_call_json
 from tenacity import retry, wait_random_exponential, stop_after_attempt
 import json
@@ -19,47 +19,16 @@ def generate_text(data):
         session_id = data.get('session_id')
         prompt = data.get('prompt', '')
 
-        # Fetch context from database
-        chat_flow_entry = chat_flow.query.filter_by(id=session_id).first()
-        if not chat_flow_entry:
-            logging.error(f"No chat flow found for session_id: {session_id}")
-            return {"error": "Invalid session_id"}, 400
+        new_context = update_context(data)
 
-        context = chat_flow_entry.flowData
-
-        # Write context to file
-        context_file = f'{base_path}/instance/tmp/context.json'
-        try:
-            with open(context_file, 'w') as file:
-                file.write(context)
-        except Exception as e:
-            logging.error(f"Failed to write context to file: {e}")
-            return {"error": "Failed to process context"}, 500
-
-        # Convert workflow
-        try:
-            convertWorkflow()
-        except Exception as e:
-            logging.error(f"Failed to convert workflow: {e}")
-            return {"error": "Failed to convert workflow"}, 500
-
-        # Read new context
-        new_context_file = f'{base_path}/instance/tmp/new_context.json'
-        try:
-            with open(new_context_file, 'r') as f:
-                new_context = f.read().replace('\n', '')
-        except Exception as e:
-            logging.error(f"Failed to read new context file: {e}")
-            return {"error": "Failed to read new context"}, 500
-
-        context_prompt = f"{prompt}. Context:{new_context}"
+        context_prompt = f"{prompt}. Here's what we currently have in the workflow:{new_context}"
 
         # Fetch messages from database, including the latest prompt as a message
         try:
             messages = [{"role": "user" if message.role == "userMessage" else "assistant", "content": message.content} 
                         for message in chat_message.query.filter_by(chatflowid=session_id).all()]
             # Add the latest prompt as a new user message
-            messages.append({"role": "user", "content": prompt})
+            messages.append({"role": "user", "content": context_prompt})
         except Exception as e:
             logging.error(f"Failed to fetch chat messages: {e}")
             return {"error": "Failed to fetch messages"}, 500
@@ -82,9 +51,15 @@ def generate_text(data):
 
         assistant_message_content = response.choices[0].message.content.strip()
 
-        # Extract and save JSON response
         try:
             json_response = extract_json_objects(assistant_message_content)
+            # Add context to response
+            try:
+                json_response = concat_elements(json.loads(new_context), json_response)
+            except Exception as e:
+                logging.error(f"Failed to concatenate context and response: {e}")
+                return {"error": "Failed to process response"}, 500 
+            
             response_file = f'{base_path}/instance/tmp/json_response.json'
             with open(response_file, 'w') as file:
                 json.dump(json_response, file)
@@ -116,43 +91,13 @@ def generate_text(data):
         logging.error(f"An unexpected error occurred: {e}")
         return {"error": "An unexpected error occurred"}, 500
     
+
 def generate_func_call(data):
     try:
         session_id = data.get('session_id')
         prompt = data.get('prompt', '')
 
-        # Fetch context from database
-        chat_flow_entry = chat_flow.query.filter_by(id=session_id).first()
-        if not chat_flow_entry:
-            logging.error(f"No chat flow found for session_id: {session_id}")
-            return {"error": "Invalid session_id"}, 400
-
-        context = chat_flow_entry.flowData
-
-        # Write context to file
-        context_file = f'{base_path}/instance/tmp/context.json'
-        try:
-            with open(context_file, 'w') as file:
-                file.write(context)
-        except Exception as e:
-            logging.error(f"Failed to write context to file: {e}")
-            return {"error": "Failed to process context"}, 500
-
-        # Convert workflow
-        try:
-            convertWorkflow()
-        except Exception as e:
-            logging.error(f"Failed to convert workflow: {e}")
-            return {"error": "Failed to convert workflow"}, 500
-
-        # Read new context
-        new_context_file = f'{base_path}/instance/tmp/new_context.json'
-        try:
-            with open(new_context_file, 'r') as f:
-                new_context = f.read().replace('\n', '')
-        except Exception as e:
-            logging.error(f"Failed to read new context file: {e}")
-            return {"error": "Failed to read new context"}, 500
+        new_context = update_context(data)
 
         context_prompt = f"{prompt}. Context:{new_context}"
 
@@ -172,7 +117,7 @@ def generate_func_call(data):
             messages.insert(0, {"role": "system", "content": system_instruction})
 
         @retry(wait=wait_random_exponential(multiplier=1, max=40), stop=stop_after_attempt(3))
-        def chat_completion_request(messages, tools=None, tool_choice=None, model=GPT_MODEL):
+        def chat_completion_request(messages, tools=None, tool_choice="auto", model=GPT_MODEL):
             try:
                 response = client.chat.completions.create(
                     model=model,
@@ -201,6 +146,9 @@ def generate_func_call(data):
         # Extract and save JSON response
         try:
             json_response = extract_json_objects(assistant_message_content)
+            # Add context to response
+            json_response = concat_elements(json.loads(new_context), json_response)
+
             response_file = f'{base_path}/instance/tmp/json_response.json'
             with open(response_file, 'w') as file:
                 json.dump(json_response, file)
@@ -224,7 +172,7 @@ def generate_func_call(data):
         except Exception as e:
             logging.error(f"Failed to load final context or structure: {e}")
             return {"error": "Failed to load final data"}, 500
-
+        
         json_data_string = json.dumps(json_data_file).replace('\n', '')
 
         return json_data_string, assistant_message_content
