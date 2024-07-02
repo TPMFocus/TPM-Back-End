@@ -164,7 +164,7 @@ def generate_bdd_test_structure(node_id):
 
 
 def modified_gherkins(data):
-    # Data is a string, we need to convert it to a list of dictionaries
+    # Data is a list, we need to convert it to a list of dictionaries
     data = eval(data)
     generated_gherkin = []
     for gherkin in data:

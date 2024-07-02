@@ -1,18 +1,51 @@
 from openai import OpenAI
 from app import db
 from app.main.models import chat_message, chat_flow
-from app.utils.helpers import extract_json_objects, convert, convertWorkflow, update_context, concat_elements
+from app.utils.helpers import extract_json_objects, convert, update_context, concat_elements
 from app.utils.FunctionCall.openiai_tools import get_function_call_json
 from tenacity import retry, wait_random_exponential, stop_after_attempt
 import json
 import os
+import re
 import logging
 
-# wsl_base_path : /home/adam_skandrani/TPM-Flask-Backend/
+wsl_base_path = '/home/adam_skandrani/TPM-Flask-Backend/'
 base_path = 'C:/Users/Adam Skandrani/TPM-Flask-Backend'
 
 GPT_MODEL = "gpt-3.5-turbo-1106"
 client = OpenAI(api_key=os.getenv('API_KEY'))
+
+
+def remove_json_from_string(s):
+    # Regular expression pattern to match JSON-like objects
+    json_pattern = re.compile(r'\{(?:[^{}]*|\{(?:[^{}]*|\{[^{}]*\})*\})*\}')
+    
+    def is_json(candidate):
+        try:
+            json.loads(candidate)
+            return True
+        except ValueError:
+            return False
+
+    def find_and_remove_json_objects(text):
+        while True:
+            matches = json_pattern.findall(text)
+            if not matches:
+                break
+            for match in matches:
+                if is_json(match):
+                    text = text.replace(match, '')
+        return text
+
+    # Continuously find and remove JSON objects until none are left
+    while True:
+        old_s = s
+        s = find_and_remove_json_objects(s)
+        if s == old_s:
+            break
+    
+    return s
+
 
 def generate_text(data):
     try:
@@ -53,6 +86,8 @@ def generate_text(data):
 
         try:
             json_response = extract_json_objects(assistant_message_content)
+            chat_response = remove_json_from_string(assistant_message_content).replace("```json", "").replace("```", "").replace("\n", "")
+
             # Add context to response
             try:
                 json_response = concat_elements(json.loads(new_context), json_response)
@@ -60,7 +95,7 @@ def generate_text(data):
                 logging.error(f"Failed to concatenate context and response: {e}")
                 return {"error": "Failed to process response"}, 500 
             
-            response_file = f'{base_path}/instance/tmp/json_response.json'
+            response_file = f'{wsl_base_path}/instance/tmp/json_response.json'
             with open(response_file, 'w') as file:
                 json.dump(json_response, file)
         except Exception as e:
@@ -76,9 +111,9 @@ def generate_text(data):
 
         # Load final context and structure
         try:
-            with open(f'{base_path}/instance/tmp/context.json', 'r') as f:
+            with open(f'{wsl_base_path}/instance/tmp/context.json', 'r') as f:
                 context_file = json.load(f)
-            with open(f'{base_path}/instance/tmp/final_structure.json', 'r') as f:
+            with open(f'{wsl_base_path}/instance/tmp/final_structure.json', 'r') as f:
                 json_data_file = json.load(f)
         except Exception as e:
             logging.error(f"Failed to load final context or structure: {e}")
@@ -86,12 +121,13 @@ def generate_text(data):
 
         json_data_string = json.dumps(json_data_file).replace('\n', '')
 
-        return json_data_string, assistant_message_content
+        return json_data_string, chat_response
     except Exception as e:
         logging.error(f"An unexpected error occurred: {e}")
         return {"error": "An unexpected error occurred"}, 500
     
 
+# Function currently under development, not to be used in the current project
 def generate_func_call(data):
     try:
         session_id = data.get('session_id')
@@ -149,7 +185,7 @@ def generate_func_call(data):
             # Add context to response
             json_response = concat_elements(json.loads(new_context), json_response)
 
-            response_file = f'{base_path}/instance/tmp/json_response.json'
+            response_file = f'{wsl_base_path}/instance/tmp/json_response.json'
             with open(response_file, 'w') as file:
                 json.dump(json_response, file)
         except Exception as e:
@@ -165,9 +201,9 @@ def generate_func_call(data):
 
         # Load final context and structure
         try:
-            with open(f'{base_path}/instance/tmp/context.json', 'r') as f:
+            with open(f'{wsl_base_path}/instance/tmp/context.json', 'r') as f:
                 context_file = json.load(f)
-            with open(f'{base_path}/instance/tmp/final_structure.json', 'r') as f:
+            with open(f'{wsl_base_path}/instance/tmp/final_structure.json', 'r') as f:
                 json_data_file = json.load(f)
         except Exception as e:
             logging.error(f"Failed to load final context or structure: {e}")
