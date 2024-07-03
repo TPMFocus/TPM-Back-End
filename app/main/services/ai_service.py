@@ -121,6 +121,8 @@ def generate_text(data):
 
         json_data_string = json.dumps(json_data_file).replace('\n', '')
 
+        final_context = update_context(data)
+
         return json_data_string, chat_response
     except Exception as e:
         logging.error(f"An unexpected error occurred: {e}")
