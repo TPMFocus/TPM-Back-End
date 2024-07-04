@@ -41,7 +41,7 @@ def convert():
     
     # Saving final_structure to a JSON file
     try:
-        with open(f'{base_path}/instance/tmp/final_structure.json', 'w') as file:
+        with open(f'{wsl_base_path}/instance/tmp/final_structure.json', 'w') as file:
             json.dump({"nodes": final_structure_node, "edges": final_structure_edge}, file, indent=2)
     except Exception as e:
         print('Error saving final structure : ', e)
