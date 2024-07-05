@@ -6,7 +6,6 @@ from app.utils.FunctionCall.CodeQualityChecksJSON import code_quality_checks_jso
 from app.utils.FunctionCall.ExecutionDetailsJSON import execution_details_json
 from app.utils.FunctionCall.FrontendIntegrationTestJSON import frontend_integration_test_json
 from app.utils.FunctionCall.FrontendUnitTestJSON import frontend_unit_test_json
-from app.utils.FunctionCall.IntegrationJSON import integration_json
 from app.utils.FunctionCall.IntegrationTestJSON import integration_test_json
 from app.utils.FunctionCall.ManualStepJSON import manual_step_json
 from app.utils.FunctionCall.ManualTestJSON import manual_test_json
@@ -22,6 +21,8 @@ from app.utils.FunctionCall.ThirdPartyChecksTestJSON import thrid_party_checks_t
 from app.utils.FunctionCall.UIInteractionJSON import ui_interactions_json
 from app.utils.FunctionCall.UnitTestJSON import unit_test_json
 
+from app.utils.FunctionCall.MasterJSON import gen_master_workflow
+
 
 def get_function_call_json():
     tools = [
@@ -33,7 +34,6 @@ def get_function_call_json():
         execution_details_json(),
         frontend_integration_test_json(),
         frontend_unit_test_json(),
-        integration_json(),
         integration_test_json(),
         manual_step_json(),
         manual_test_json(),

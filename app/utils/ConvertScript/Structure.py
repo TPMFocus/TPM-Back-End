@@ -6,7 +6,6 @@ from app.utils.ConvertScript.Node_Structures.CodeQualityChecks import generate_c
 from app.utils.ConvertScript.Node_Structures.ExecutionDetails import generate_execution_details_structure
 from app.utils.ConvertScript.Node_Structures.FrontendIntegrationTest import generate_frontend_integration_test_structure
 from app.utils.ConvertScript.Node_Structures.FrontendUnitTest import generate_frontend_unit_test_structure
-from app.utils.ConvertScript.Node_Structures.Integration import generate_integration_structure
 from app.utils.ConvertScript.Node_Structures.IntegrationTest import generate_integration_test_structure
 from app.utils.ConvertScript.Node_Structures.ManualStep import generate_manual_step_structure
 from app.utils.ConvertScript.Node_Structures.ManualTest import generate_manual_test_structure
@@ -39,8 +38,6 @@ def generate_node_structure(node):
         return generate_frontend_integration_test_structure(node["node_id"])
     elif node["node_type"] == "FrontEndUnitTestNode":
         return generate_frontend_unit_test_structure(node["node_id"])
-    elif node["node_type"] == "IntegrationNode":
-        return generate_integration_structure(node["node_id"])
     elif node["node_type"] == "IntegrationTestNode":
         return generate_integration_test_structure(node["node_id"])
     elif node["node_type"] == "TestStepNode":

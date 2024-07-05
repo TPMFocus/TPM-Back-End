@@ -6,7 +6,6 @@ from app.utils.ConvertScript.Node_Structures.CodeQualityChecks import reduced_co
 from app.utils.ConvertScript.Node_Structures.ExecutionDetails import reduced_execution_details
 from app.utils.ConvertScript.Node_Structures.FrontendIntegrationTest import reduced_frontend_integration_test
 from app.utils.ConvertScript.Node_Structures.FrontendUnitTest import reduced_frontend_unit_test
-from app.utils.ConvertScript.Node_Structures.Integration import reduced_integration
 from app.utils.ConvertScript.Node_Structures.IntegrationTest import reduced_integration_test
 from app.utils.ConvertScript.Node_Structures.ManualStep import reduced_manual_step
 from app.utils.ConvertScript.Node_Structures.ManualTest import reduced_manual_test
@@ -51,8 +50,6 @@ def destructure(workflow_nodes, workflow_edges):
             deconstructed_workflow.append(reduced_frontend_integration_test(node["data"]["id"], node["data"]["inputs"], workflow_edges))
         elif node["data"]["type"] == "FrontEndUnitTestNode":
             deconstructed_workflow.append(reduced_frontend_unit_test(node["data"]["id"], node["data"]["inputs"], workflow_edges))
-        elif node["data"]["type"] == "IntegrationNode":
-            deconstructed_workflow.append(reduced_integration(node["data"]["id"], node["data"]["inputs"], workflow_edges))
         elif node["data"]["type"] == "IntegrationTestNode":
             deconstructed_workflow.append(reduced_integration_test(node["data"]["id"], node["data"]["inputs"], workflow_edges))
         elif node["data"]["type"] == "TestStepNode":
