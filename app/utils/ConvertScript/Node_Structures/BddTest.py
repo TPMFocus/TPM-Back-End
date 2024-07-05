@@ -165,7 +165,11 @@ def generate_bdd_test_structure(node_id):
 
 def modified_gherkins(data):
     # Data is a list, we need to convert it to a list of dictionaries
-    data = eval(data)
+    try:
+      data = eval(data)
+    except Exception as e:
+      print('Error converting data to list: ', e)
+      return []
     generated_gherkin = []
     for gherkin in data:
         generated_gherkin.append({
@@ -184,7 +188,7 @@ def reduced_bdd_test(node_id, data, edge_list):
           "background": "{}".format(data['background']),
           "scenario": "{}".format(data['scenario']),
           "priority": "{}".format(data['priority']),
-          "tags": "",
+          "tags": "{}".format(data['tags']),
           "gherkinSteps": "{}".format(modified_gherkins(data['gherkinSteps']))
         },
         "next_node": get_next_node_id(node_id, edge_list)

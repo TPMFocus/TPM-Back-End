@@ -75,8 +75,7 @@ def generate_text(data):
         try:
             response = client.chat.completions.create(
                 model="gpt-3.5-turbo-16k",
-                messages=messages,
-                max_tokens=4096
+                messages=messages
             )
         except Exception as e:
             logging.error(f"OpenAI API call failed: {e}")
@@ -95,7 +94,7 @@ def generate_text(data):
                 logging.error(f"Failed to concatenate context and response: {e}")
                 return {"error": "Failed to process response"}, 500 
             
-            response_file = f'{wsl_base_path}/instance/tmp/json_response.json'
+            response_file = f'{base_path}/instance/tmp/json_response.json'
             with open(response_file, 'w') as file:
                 json.dump(json_response, file)
         except Exception as e:
@@ -111,9 +110,7 @@ def generate_text(data):
 
         # Load final context and structure
         try:
-            with open(f'{wsl_base_path}/instance/tmp/context.json', 'r') as f:
-                context_file = json.load(f)
-            with open(f'{wsl_base_path}/instance/tmp/final_structure.json', 'r') as f:
+            with open(f'{base_path}/instance/tmp/final_structure.json', 'r') as f:
                 json_data_file = json.load(f)
         except Exception as e:
             logging.error(f"Failed to load final context or structure: {e}")
@@ -128,6 +125,8 @@ def generate_text(data):
         logging.error(f"An unexpected error occurred: {e}")
         return {"error": "An unexpected error occurred"}, 500
     
+
+
 
 # Function currently under development, not to be used in the current project
 def generate_func_call(data):
@@ -187,7 +186,7 @@ def generate_func_call(data):
             # Add context to response
             json_response = concat_elements(json.loads(new_context), json_response)
 
-            response_file = f'{wsl_base_path}/instance/tmp/json_response.json'
+            response_file = f'{base_path}/instance/tmp/json_response.json'
             with open(response_file, 'w') as file:
                 json.dump(json_response, file)
         except Exception as e:
@@ -203,9 +202,7 @@ def generate_func_call(data):
 
         # Load final context and structure
         try:
-            with open(f'{wsl_base_path}/instance/tmp/context.json', 'r') as f:
-                context_file = json.load(f)
-            with open(f'{wsl_base_path}/instance/tmp/final_structure.json', 'r') as f:
+            with open(f'{base_path}/instance/tmp/final_structure.json', 'r') as f:
                 json_data_file = json.load(f)
         except Exception as e:
             logging.error(f"Failed to load final context or structure: {e}")

@@ -79,13 +79,14 @@ def generate_frontend_integration_test_structure(node_id):
     return frontend_integration_test
 
 
-def reduced_frontend_integration_test(node_id, data):
+def reduced_frontend_integration_test(node_id, data, edge_list):
     frontend_integration_test = {
         "node": "FrontEndIntegrationTestNode",
         "node_id": "{}".format(node_id),
         "data": {
           "IntegrationScope": "{}".format(data["IntegrationScope"]),
           "FrontEndTechnology": "{}".format(data["FrontEndTechnology"])
-        }
+        },
+        "next_node": get_next_node_id(node_id, edge_list)
     }
     return frontend_integration_test

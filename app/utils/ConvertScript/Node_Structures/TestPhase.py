@@ -39,7 +39,7 @@ def generate_test_phase_structure(node_id):
           {
             "label": "Start Date",
             "name": "startDate",
-            "type": "date",
+            "type": "string",
             "description": "Start date of the test phase.",
             "optional": true,
             "additionalParams": true,
@@ -48,7 +48,7 @@ def generate_test_phase_structure(node_id):
           {
             "label": "End Date",
             "name": "endDate",
-            "type": "date",
+            "type": "string",
             "description": "End date of the test phase.",
             "optional": true,
             "additionalParams": true,

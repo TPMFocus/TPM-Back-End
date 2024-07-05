@@ -76,13 +76,14 @@ def generate_frontend_unit_test_structure(node_id):
     }
     return frontend_unit_test
 
-def reduced_frontend_unit_test(node_id, data):
+def reduced_frontend_unit_test(node_id, data, edge_list):
     frontend_unit_test = {
         "node": "FrontEndUnitTestNode",
         "node_id": "{}".format(node_id),
         "data": {
           "UITestFramework": "{}".format(data["UITestFramework"]),
           "UIElements": "{}".format(data["UIElements"])
-        }
+        },
+        "next_node": get_next_node_id(edge_list, node_id)
     }
     return frontend_unit_test
