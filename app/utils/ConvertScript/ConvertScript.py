@@ -3,7 +3,7 @@ from app.utils.ConvertScript.Extract import *
 from app.utils.ConvertScript.Build import *
 import json
 
-wsl_base_path = '/home/adam_skandrani/TPM-Flask-Backend/'
+wsl_base_path = '/home/adam_skandrani/TPM-Flask-Backend'
 base_path = 'C:/Users/Adam Skandrani/TPM-Flask-Backend'
 
 def convert():

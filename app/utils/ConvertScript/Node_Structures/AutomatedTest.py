@@ -1,4 +1,4 @@
-from app.utils.ConvertScript.GetNextNode import get_next_node_id
+from app.utils.ConvertScript.GetNextNode import get_next_node_id, extract_int
 
 def generate_automated_test_structure(node_id):
     true = True
@@ -7,7 +7,7 @@ def generate_automated_test_structure(node_id):
       "id": "{}".format(node_id),
       "position": {
         "x": 2000,
-        "y": 0
+        "y": extract_int(node_id) * 600
       },
       "type": "customNode",
       "data": {
@@ -197,7 +197,7 @@ def generate_automated_test_structure(node_id):
       "height": 558,
       "positionAbsolute": {
         "x": 2000,
-        "y": 0
+        "y": extract_int(node_id) * 600
       },
       "selected": false,
       "dragging": false
