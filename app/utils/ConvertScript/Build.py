@@ -41,10 +41,18 @@ def build(json_data_list):
         for node in node_types_data:
             node = json.loads(json.dumps(node))
             #print('node:', node, '\n')
-            structure = generate_node_structure(node)
+            try:
+                structure = generate_node_structure(node)
+            except Exception as e:
+                print('Error generating node structure initially : ', e)
+                return
             #print('structure:', json.dumps(structure), '\n')
-            structure['data']['inputs'] = node["data"]
-            final_structure_node.append(structure)
+            try:
+                structure['data']['inputs'] = node['data']
+                final_structure_node.append(structure)
+            except Exception as e:
+                print('Error generating node structure 2nd : ', e)
+                return
     except Exception as e:
         print('Error generating node structure : ', e)
         return
