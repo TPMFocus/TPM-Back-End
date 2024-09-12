@@ -4,8 +4,7 @@ from app.main.models import chat_flow
 from app.utils.ConvertScript.ConvertScript import convert as Model2Workflow
 from app.utils.ConvertScript.Workflow2Model import convertWorkflow as Workflow2Model
 
-wsl_base_path = '/home/adam_skandrani/TPM-Flask-Backend/'
-base_path = 'C:/Users/Adam Skandrani/TPM-Flask-Backend'
+wsl_base_path = 'C:/Users/pc/Desktop/PFE Final/TPM-Flask-Backend'
 
 
 

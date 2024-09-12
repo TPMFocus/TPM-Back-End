@@ -9,8 +9,7 @@ import os
 import re
 import logging
 
-wsl_base_path = '/home/adam_skandrani/TPM-Flask-Backend/'
-base_path = 'C:/Users/Adam Skandrani/TPM-Flask-Backend'
+wsl_base_path = 'C:/Users/pc/Desktop/PFE Final/TPM-Flask-Backend'
 
 GPT_MODEL = "gpt-3.5-turbo-1106"
 client = OpenAI(api_key=os.getenv('API_KEY'))

@@ -10,7 +10,7 @@ load_dotenv()
 class Config:
     SQLALCHEMY_DATABASE_URI = 'sqlite:///chat.db'
     SQLALCHEMY_BINDS = {
-        'flowise': 'sqlite:////home/adam_skandrani/.flowise/database.sqlite',
+        'flowise': 'sqlite:///C:/Users/pc/.flowise/database.sqlite',
         'chat': 'sqlite:///chat.db'
     }
     SQLALCHEMY_TRACK_MODIFICATIONS = False

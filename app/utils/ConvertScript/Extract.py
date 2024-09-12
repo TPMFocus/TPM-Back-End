@@ -1,8 +1,7 @@
 from app.utils.ConvertScript.Structure import *
 import json
 
-wsl_base_path = '/home/adam_skandrani/TPM-Flask-Backend'
-base_path = 'C:/Users/Adam Skandrani/TPM-Flask-Backend'
+wsl_base_path = 'C:/Users/pc/Desktop/PFE Final/TPM-Flask-Backend'
 
 def extract_next_nodes(json_data_list):
     next_nodes = []
