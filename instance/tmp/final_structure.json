@@ -1,0 +1,981 @@
+{
+  "nodes": [
+    {
+      "id": "1",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "type": "customNode",
+      "data": {
+        "id": "1",
+        "label": "Test Strategy",
+        "version": 1,
+        "name": "testStrategyNode",
+        "type": "TestStrategyNode",
+        "baseClasses": [
+          "TestStrategyNode"
+        ],
+        "category": "Main Nodes",
+        "description": "High-level plan outlining the overall testing approach for a project.",
+        "inputParams": [
+          {
+            "label": "Title",
+            "name": "title",
+            "type": "string",
+            "id": "1-input-title-string"
+          },
+          {
+            "label": "Description",
+            "name": "description",
+            "type": "string",
+            "rows": 4,
+            "optional": true,
+            "id": "1-input-description-string"
+          },
+          {
+            "label": "Data Considerations",
+            "name": "dataConsiderations",
+            "type": "string",
+            "rows": 4,
+            "description": "Overview of the test plan, detailing scope, resources, schedule, and testing phases.",
+            "optional": true,
+            "additionalParams": true,
+            "id": "1-input-dataConsiderations-string"
+          }
+        ],
+        "inputAnchors": [],
+        "inputs": {
+          "title": "Initial Strategy",
+          "description": "Defining the overall strategy",
+          "dataConsiderations": "Consider GDPR regulations"
+        },
+        "outputAnchors": [
+          {
+            "id": "1-output-testStrategyNode-TestStrategyNode",
+            "name": "testStrategyNode",
+            "label": "TestStrategyNode",
+            "description": "High-level plan outlining the overall testing approach for a project.",
+            "type": "TestStrategyNode"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 508,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 0,
+        "y": 0
+      },
+      "dragging": false
+    },
+    {
+      "id": "2",
+      "position": {
+        "x": 400,
+        "y": -450
+      },
+      "type": "customNode",
+      "data": {
+        "id": "2",
+        "label": "Test Phase",
+        "version": 1,
+        "name": "TestingPhaseNode",
+        "type": "TestingPhaseNode",
+        "baseClasses": [
+          "TestingPhaseNode"
+        ],
+        "category": "Main Nodes",
+        "description": "Dedicated stage in software development focused on identifying and fixing bugs before launch.",
+        "inputParams": [
+          {
+            "label": "Title",
+            "name": "title",
+            "type": "string",
+            "id": "2-input-title-string"
+          },
+          {
+            "label": "Description",
+            "name": "description",
+            "type": "string",
+            "rows": 4,
+            "optional": true,
+            "id": "2-input-description-string"
+          },
+          {
+            "label": "Start Date",
+            "name": "startDate",
+            "type": "string",
+            "description": "Start date of the test phase.",
+            "optional": true,
+            "additionalParams": true,
+            "id": "2-input-startDate-date"
+          },
+          {
+            "label": "End Date",
+            "name": "endDate",
+            "type": "string",
+            "description": "End date of the test phase.",
+            "optional": true,
+            "additionalParams": true,
+            "id": "2-input-endDate-date"
+          },
+          {
+            "label": "Estimation",
+            "name": "estimation",
+            "type": "string",
+            "description": "Estimation of the test phase.",
+            "optional": true,
+            "additionalParams": true,
+            "id": "2-input-estimation-string"
+          }
+        ],
+        "inputAnchors": [
+          {
+            "label": "",
+            "name": "input",
+            "type": "TestStrategyNode",
+            "optional": true,
+            "id": "2-input-input-TestStrategyNode"
+          }
+        ],
+        "inputs": {
+          "title": "Phase 1",
+          "description": "Initial testing phase",
+          "startDate": "2023-01-01",
+          "endDate": "2023-02-01",
+          "estimation": "1 month"
+        },
+        "outputAnchors": [
+          {
+            "id": "2-output-TestingPhaseNode-TestingPhaseNode",
+            "name": "TestingPhaseNode",
+            "label": "TestingPhaseNode",
+            "description": "Dedicated stage in software development focused on identifying and fixing bugs before launch.",
+            "type": "TestingPhaseNode"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 540,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 400,
+        "y": -450
+      },
+      "dragging": false
+    },
+    {
+      "id": "3",
+      "position": {
+        "x": 800,
+        "y": 450
+      },
+      "type": "customNode",
+      "data": {
+        "id": "3",
+        "label": "Test Plan",
+        "version": 1,
+        "name": "TestPlanNode",
+        "type": "TestPlanNode",
+        "baseClasses": [
+          "TestPlanNode"
+        ],
+        "category": "Main Nodes",
+        "description": "A formal document outlining the strategy, scope, resources, and schedule for testing a software application or system.",
+        "inputParams": [
+          {
+            "label": "Title",
+            "name": "title",
+            "type": "string",
+            "id": "3-input-title-string"
+          },
+          {
+            "label": "Description",
+            "name": "description",
+            "type": "string",
+            "rows": 4,
+            "optional": true,
+            "id": "3-input-description-string"
+          },
+          {
+            "label": "Number of Assigned Testers",
+            "name": "numberOfAssignedTesters",
+            "type": "number",
+            "step": 1,
+            "optional": true,
+            "additionalParams": true,
+            "id": "3-input-numberOfAssignedTesters-number"
+          },
+          {
+            "label": "Date of execution",
+            "name": "dateOfExecution",
+            "type": "string",
+            "description": "Date of execution of the test phase.",
+            "optional": true,
+            "additionalParams": true,
+            "id": "3-input-dateOfExecution-string"
+          },
+          {
+            "label": "Estimation",
+            "name": "estimation",
+            "type": "string",
+            "description": "Estimation of the test plan.",
+            "optional": true,
+            "additionalParams": true,
+            "id": "3-input-estimation-string"
+          },
+          {
+            "label": "Risk Assessment",
+            "name": "riskAssessment",
+            "type": "string",
+            "rows": 4,
+            "description": "Risk assessment of the test plan.",
+            "optional": true,
+            "additionalParams": true,
+            "id": "3-input-riskAssessment-string"
+          },
+          {
+            "label": "Data Requirements",
+            "name": "dataRequirements",
+            "type": "string",
+            "rows": 4,
+            "description": "Data requirements of the test plan.",
+            "optional": true,
+            "additionalParams": true,
+            "id": "3-input-dataRequirements-string"
+          },
+          {
+            "label": "Overall Execution Results",
+            "name": "overallExecutionResults",
+            "type": "string",
+            "rows": 2,
+            "description": "Overall execution results of the test plan.",
+            "optional": true,
+            "additionalParams": true,
+            "id": "3-input-overallExecutionResults-string"
+          }
+        ],
+        "inputAnchors": [
+          {
+            "label": "",
+            "name": "input",
+            "type": "TestingPhaseNode",
+            "optional": true,
+            "id": "3-input-input-TestingPhaseNode"
+          },
+          {
+            "label": "Environment",
+            "name": "inputEnvironment",
+            "type": "TestEnvironmentNode",
+            "optional": true,
+            "id": "3-input-inputEnvironment-TestEnvironmentNode"
+          }
+        ],
+        "inputs": {
+          "title": "Sample Test Plan",
+          "description": "Test plan for the sample feature",
+          "numberOfAssignedTesters": "3",
+          "dateOfExecution": "2023-01-15",
+          "estimation": "2 weeks",
+          "riskAssessment": "Low",
+          "dataRequirements": "Mock data needed",
+          "overallExecutionResults": "Pending"
+        },
+        "outputAnchors": [
+          {
+            "id": "3-output-TestPlanNode-TestPlanNode",
+            "name": "TestPlanNode",
+            "label": "TestPlanNode",
+            "description": "A formal document outlining the strategy, scope, resources, and schedule for testing a software application or system.",
+            "type": "TestPlanNode"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 591,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 800,
+        "y": 450
+      },
+      "dragging": false
+    },
+    {
+      "id": "4",
+      "position": {
+        "x": 1200,
+        "y": 450
+      },
+      "type": "customNode",
+      "data": {
+        "id": "4",
+        "label": "Test Suite",
+        "version": 1,
+        "name": "TestSuiteNode",
+        "type": "TestSuiteNode",
+        "baseClasses": [
+          "TestSuiteNode"
+        ],
+        "category": "Main Nodes",
+        "description": "Collection of organized test cases designed to be run together for a specific functionality or feature.",
+        "inputParams": [
+          {
+            "label": "Title",
+            "name": "title",
+            "type": "string",
+            "id": "4-input-title-string"
+          },
+          {
+            "label": "Description",
+            "name": "description",
+            "type": "string",
+            "rows": 4,
+            "optional": true,
+            "id": "4-input-description-string"
+          },
+          {
+            "label": "Exit Criteria",
+            "name": "exitCriteria",
+            "type": "string",
+            "rows": 4,
+            "description": "Conditions that must be met before the test suite can be considered complete.",
+            "optional": true,
+            "additionalParams": true,
+            "id": "4-input-exitCriteria-string"
+          }
+        ],
+        "inputAnchors": [
+          {
+            "label": "",
+            "name": "input",
+            "type": "TestPlanNode",
+            "optional": true,
+            "id": "4-input-input-TestPlanNode"
+          }
+        ],
+        "inputs": {
+          "title": "Sample Test Suite",
+          "description": "Suite for the sample feature",
+          "exitCriteria": "All tests pass"
+        },
+        "outputAnchors": [
+          {
+            "id": "4-output-TestSuiteNode-TestSuiteNode",
+            "name": "TestSuiteNode",
+            "label": "TestSuiteNode",
+            "description": "Collection of organized test cases designed to be run together for a specific functionality or feature.",
+            "type": "TestSuiteNode"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 540,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 1200,
+        "y": 450
+      },
+      "dragging": false
+    },
+    {
+      "id": "5",
+      "position": {
+        "x": 2000,
+        "y": 400
+      },
+      "type": "customNode",
+      "data": {
+        "id": "5",
+        "label": "Manual Test Case",
+        "version": 1,
+        "name": "ManualTestCaseNode",
+        "type": "ManualTestCaseNode",
+        "baseClasses": [
+          "ManualTestCaseNode"
+        ],
+        "category": "Manual Test",
+        "description": "Step-by-step instructions for a tester to verify software functionality without automation tools.",
+        "inputParams": [
+          {
+            "label": "Title",
+            "name": "title",
+            "type": "string",
+            "id": "5-input-title-string"
+          },
+          {
+            "label": "Priority",
+            "name": "priority",
+            "type": "options",
+            "options": [
+              {
+                "label": "High",
+                "name": "High"
+              },
+              {
+                "label": "Medium",
+                "name": "Medium"
+              },
+              {
+                "label": "Low",
+                "name": "Low"
+              }
+            ],
+            "optional": true,
+            "id": "5-input-priority-options"
+          },
+          {
+            "label": "Tags",
+            "name": "tags",
+            "type": "string",
+            "optional": true,
+            "id": "5-input-tags-string"
+          },
+          {
+            "label": "Preconditions",
+            "name": "preconditions",
+            "type": "string",
+            "rows": 4,
+            "description": "Requirements that must be met before a test case can be executed.",
+            "optional": true,
+            "additionalParams": true,
+            "id": "5-input-preconditions-string"
+          },
+          {
+            "label": "Postconditions",
+            "name": "postconditions",
+            "type": "string",
+            "rows": 4,
+            "description": "Expected state or outcome after a test case is executed.",
+            "optional": true,
+            "additionalParams": true,
+            "id": "5-input-postconditions-string"
+          },
+          {
+            "label": "Expected Results",
+            "name": "expectedResults",
+            "type": "string",
+            "rows": 2,
+            "description": "Expected Outcome  (or Expected Behavior)",
+            "optional": true,
+            "additionalParams": true,
+            "id": "5-input-expectedResults-string"
+          },
+          {
+            "label": "Actual Results",
+            "name": "actualResults",
+            "type": "string",
+            "rows": 2,
+            "description": "Actual Outcome (or Observed Behavior)",
+            "optional": true,
+            "additionalParams": true,
+            "id": "5-input-actualResults-string"
+          },
+          {
+            "label": "Test Data",
+            "name": "testData",
+            "type": "file",
+            "description": "Sample input values used to trigger specific scenarios during testing.",
+            "optional": true,
+            "additionalParams": true,
+            "id": "5-input-testData-file"
+          },
+          {
+            "label": "Assigned Testers",
+            "name": "assignedTesters",
+            "type": "string",
+            "rows": 2,
+            "description": "Individuals designated to execute the specific test case.",
+            "optional": true,
+            "additionalParams": true,
+            "id": "5-input-assignedTesters-string"
+          }
+        ],
+        "inputAnchors": [
+          {
+            "label": "",
+            "name": "input",
+            "type": "TestSuiteNode",
+            "optional": true,
+            "id": "5-input-input-TestSuiteNode"
+          }
+        ],
+        "inputs": {
+          "title": "UI Login Test",
+          "priority": "High",
+          "tags": "UI, Security",
+          "preconditions": "User credentials available",
+          "postconditions": "User logged in",
+          "expectedResults": "Successful login",
+          "actualResults": "Pending",
+          "testData": "Valid login credentials",
+          "assignedTesters": "John Doe"
+        },
+        "outputAnchors": [
+          {
+            "id": "5-output-ManualTestCaseNode-ManualTestCaseNode",
+            "name": "ManualTestCaseNode",
+            "label": "ManualTestCaseNode",
+            "description": "Step-by-step instructions for a tester to verify software functionality without automation tools.",
+            "type": "ManualTestCaseNode"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 558,
+      "positionAbsolute": {
+        "x": 2000,
+        "y": 400
+      },
+      "selected": false
+    },
+    {
+      "id": "6",
+      "position": {
+        "x": 2400,
+        "y": 450
+      },
+      "type": "customNode",
+      "data": {
+        "id": "6",
+        "label": "Manual Test Step",
+        "version": 1,
+        "name": "TestStepNode",
+        "type": "TestStepNode",
+        "baseClasses": [
+          "TestStepNode"
+        ],
+        "category": "Manual Test",
+        "description": "Single action a tester performs during manual testing (e.g., click a button, enter text).",
+        "inputParams": [
+          {
+            "label": "Step ID",
+            "name": "stepId",
+            "type": "number",
+            "description": "Unique identifier for the test step.",
+            "id": "6-input-stepId-number"
+          },
+          {
+            "label": "Description",
+            "name": "description",
+            "type": "string",
+            "rows": 4,
+            "description": "Detailed instructions for the tester to follow.",
+            "optional": true,
+            "additionalParams": true,
+            "id": "6-input-description-string"
+          },
+          {
+            "label": "Required Input",
+            "name": "requiredInput",
+            "type": "string",
+            "description": "Data or information the tester must provide to complete the test step.",
+            "optional": true,
+            "additionalParams": true,
+            "id": "6-input-requiredInput-string"
+          },
+          {
+            "label": "Expected Output",
+            "name": "expectedOutput",
+            "type": "string",
+            "description": "Desired result or outcome of the test step.",
+            "optional": true,
+            "additionalParams": true,
+            "id": "6-input-expectedOutput-string"
+          }
+        ],
+        "inputAnchors": [
+          {
+            "label": "",
+            "name": "input",
+            "type": "ManualTestCaseNode",
+            "optional": true,
+            "id": "6-input-input-ManualTestCaseNode"
+          }
+        ],
+        "inputs": {
+          "stepId": "1",
+          "description": "Enter username",
+          "requiredInput": "Valid username",
+          "expectedOutput": "Username field populated"
+        },
+        "outputAnchors": [
+          {
+            "id": "6-output-TestStepNode-TestStepNode",
+            "name": "TestStepNode",
+            "label": "TestStepNode",
+            "description": "Single action a tester performs during manual testing (e.g., click a button, enter text).",
+            "type": "TestStepNode"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 540,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 2400,
+        "y": 450
+      },
+      "dragging": false
+    },
+    {
+      "id": "7",
+      "position": {
+        "x": 2400,
+        "y": 450
+      },
+      "type": "customNode",
+      "data": {
+        "id": "7",
+        "label": "Manual Test Step",
+        "version": 1,
+        "name": "TestStepNode",
+        "type": "TestStepNode",
+        "baseClasses": [
+          "TestStepNode"
+        ],
+        "category": "Manual Test",
+        "description": "Single action a tester performs during manual testing (e.g., click a button, enter text).",
+        "inputParams": [
+          {
+            "label": "Step ID",
+            "name": "stepId",
+            "type": "number",
+            "description": "Unique identifier for the test step.",
+            "id": "7-input-stepId-number"
+          },
+          {
+            "label": "Description",
+            "name": "description",
+            "type": "string",
+            "rows": 4,
+            "description": "Detailed instructions for the tester to follow.",
+            "optional": true,
+            "additionalParams": true,
+            "id": "7-input-description-string"
+          },
+          {
+            "label": "Required Input",
+            "name": "requiredInput",
+            "type": "string",
+            "description": "Data or information the tester must provide to complete the test step.",
+            "optional": true,
+            "additionalParams": true,
+            "id": "7-input-requiredInput-string"
+          },
+          {
+            "label": "Expected Output",
+            "name": "expectedOutput",
+            "type": "string",
+            "description": "Desired result or outcome of the test step.",
+            "optional": true,
+            "additionalParams": true,
+            "id": "7-input-expectedOutput-string"
+          }
+        ],
+        "inputAnchors": [
+          {
+            "label": "",
+            "name": "input",
+            "type": "ManualTestCaseNode",
+            "optional": true,
+            "id": "7-input-input-ManualTestCaseNode"
+          }
+        ],
+        "inputs": {
+          "stepId": "2",
+          "description": "Enter password",
+          "requiredInput": "Valid password",
+          "expectedOutput": "Password field populated"
+        },
+        "outputAnchors": [
+          {
+            "id": "7-output-TestStepNode-TestStepNode",
+            "name": "TestStepNode",
+            "label": "TestStepNode",
+            "description": "Single action a tester performs during manual testing (e.g., click a button, enter text).",
+            "type": "TestStepNode"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 540,
+      "selected": false,
+      "positionAbsolute": {
+        "x": 2400,
+        "y": 450
+      },
+      "dragging": false
+    },
+    {
+      "id": "8",
+      "position": {
+        "x": 2000,
+        "y": 4800
+      },
+      "type": "customNode",
+      "data": {
+        "id": "8",
+        "label": "Automated Test Case",
+        "version": 1,
+        "name": "AutomatedTestCaseNode",
+        "type": "AutomatedTestCaseNode",
+        "baseClasses": [
+          "AutomatedTestCaseNode"
+        ],
+        "category": "Automated Test",
+        "description": "Script or code that executes test steps and verifies software functionality without human intervention.",
+        "inputParams": [
+          {
+            "label": "Title",
+            "name": "title",
+            "type": "string",
+            "id": "8-input-title-string"
+          },
+          {
+            "label": "Priority",
+            "name": "priority",
+            "type": "options",
+            "options": [
+              {
+                "label": "High",
+                "name": "High"
+              },
+              {
+                "label": "Medium",
+                "name": "Medium"
+              },
+              {
+                "label": "Low",
+                "name": "Low"
+              }
+            ],
+            "optional": true,
+            "id": "8-input-priority-options"
+          },
+          {
+            "label": "Tags",
+            "name": "tags",
+            "type": "string",
+            "description": "",
+            "optional": true,
+            "id": "8-input-tags-string"
+          },
+          {
+            "label": "Preconditions",
+            "name": "preconditions",
+            "type": "string",
+            "rows": 4,
+            "description": "Requirements that must be met before a test case can be executed.",
+            "optional": true,
+            "additionalParams": true,
+            "id": "8-input-preconditions-string"
+          },
+          {
+            "label": "Postconditions",
+            "name": "postconditions",
+            "type": "string",
+            "rows": 4,
+            "description": "Expected state or outcome after a test case is executed.",
+            "optional": true,
+            "additionalParams": true,
+            "id": "8-input-postconditions-string"
+          },
+          {
+            "label": "Expected Results",
+            "name": "expectedResults",
+            "type": "string",
+            "rows": 2,
+            "description": "Expected Outcome  (or Expected Behavior)",
+            "optional": true,
+            "additionalParams": true,
+            "id": "8-input-expectedResults-string"
+          },
+          {
+            "label": "Actual Results",
+            "name": "actualResults",
+            "type": "string",
+            "rows": 2,
+            "description": "Actual Outcome (or Observed Behavior)",
+            "optional": true,
+            "additionalParams": true,
+            "id": "8-input-actualResults-string"
+          },
+          {
+            "label": "Script Location",
+            "name": "scriptLocation",
+            "type": "string",
+            "description": "Path to the test script file.",
+            "optional": true,
+            "additionalParams": true,
+            "id": "8-input-scriptLocation-string"
+          },
+          {
+            "label": "Programming Language",
+            "name": "programmingLanguage",
+            "type": "string",
+            "description": "Programming language used to write the test script.",
+            "optional": true,
+            "additionalParams": true,
+            "id": "8-input-programmingLanguage-string"
+          },
+          {
+            "label": "Framework",
+            "name": "framework",
+            "type": "string",
+            "description": "Testing framework used to execute the test script.",
+            "optional": true,
+            "additionalParams": true,
+            "id": "8-input-framework-string"
+          },
+          {
+            "label": "Maintenance Effort",
+            "name": "maintenanceEffort",
+            "type": "options",
+            "options": [
+              {
+                "label": "High",
+                "name": "High"
+              },
+              {
+                "label": "Medium",
+                "name": "Medium"
+              },
+              {
+                "label": "Low",
+                "name": "Low"
+              }
+            ],
+            "optional": true,
+            "additionalParams": true,
+            "id": "8-input-maintenanceEffort-options"
+          },
+          {
+            "label": "Dependencies",
+            "name": "dependencies",
+            "type": "string",
+            "rows": 2,
+            "description": "List of dependencies for the automated test case.",
+            "optional": true,
+            "additionalParams": true,
+            "id": "8-input-dependencies-string"
+          }
+        ],
+        "inputAnchors": [
+          {
+            "label": "",
+            "name": "input",
+            "type": "TestSuiteNode",
+            "optional": true,
+            "id": "8-input-input-TestSuiteNode"
+          }
+        ],
+        "inputs": {
+          "title": "API User Creation",
+          "priority": "Medium",
+          "tags": "API, Users",
+          "preconditions": "API access available",
+          "postconditions": "User created",
+          "expectedResults": "User successfully created",
+          "actualResults": "Pending",
+          "scriptLocation": "/scripts/userCreation.js",
+          "programmingLanguage": "JavaScript",
+          "framework": "Mocha",
+          "maintenanceEffort": "Low",
+          "dependencies": "API access"
+        },
+        "outputAnchors": [
+          {
+            "id": "8-output-AutomatedTestCaseNode-AutomatedTestCaseNode",
+            "name": "AutomatedTestCaseNode",
+            "label": "AutomatedTestCaseNode",
+            "description": "Script or code that executes test steps and verifies software functionality without human intervention.",
+            "type": "AutomatedTestCaseNode"
+          }
+        ],
+        "outputs": {},
+        "selected": false
+      },
+      "width": 300,
+      "height": 558,
+      "positionAbsolute": {
+        "x": 2000,
+        "y": 4800
+      },
+      "selected": false,
+      "dragging": false
+    }
+  ],
+  "edges": [
+    {
+      "source": "1",
+      "sourceHandle": "1-output-testStrategyNode-TestStrategyNode",
+      "target": "2",
+      "targetHandle": "2-input-input-TestStrategyNode",
+      "type": "buttonedge",
+      "id": "1-output-testStrategyNode-TestStrategyNode-2-input-input-TestStrategyNode"
+    },
+    {
+      "source": "2",
+      "sourceHandle": "2-output-TestingPhaseNode-TestingPhaseNode",
+      "target": "3",
+      "targetHandle": "3-input-input-TestingPhaseNode",
+      "type": "buttonedge",
+      "id": "2-output-TestingPhaseNode-TestingPhaseNode-3-input-input-TestingPhaseNode"
+    },
+    {
+      "source": "3",
+      "sourceHandle": "3-output-TestPlanNode-TestPlanNode",
+      "target": "4",
+      "targetHandle": "4-input-input-TestPlanNode",
+      "type": "buttonedge",
+      "id": "3-output-TestPlanNode-TestPlanNode-4-input-input-TestPlanNode"
+    },
+    {
+      "source": "4",
+      "sourceHandle": "4-output-TestSuiteNode-TestSuiteNode",
+      "target": "5",
+      "targetHandle": "5-input-input-TestSuiteNode",
+      "type": "buttonedge",
+      "id": "4-output-TestSuiteNode-TestSuiteNode-5-input-input-TestSuiteNode"
+    },
+    {
+      "source": "5",
+      "sourceHandle": "5-output-ManualTestCaseNode-ManualTestCaseNode",
+      "target": "6",
+      "targetHandle": "6-input-input-ManualTestCaseNode",
+      "type": "buttonedge",
+      "id": "5-output-ManualTestCaseNode-ManualTestCaseNode-6-input-input-ManualTestCaseNode"
+    },
+    {
+      "source": "6",
+      "sourceHandle": "6-output-TestStepNode-TestStepNode",
+      "target": "7",
+      "targetHandle": "7-input-input-ManualTestCaseNode",
+      "type": "buttonedge",
+      "id": "6-output-TestStepNode-TestStepNode-7-input-input-ManualTestCaseNode"
+    },
+    {
+      "source": "7",
+      "sourceHandle": "7-output-TestStepNode-TestStepNode",
+      "target": "8",
+      "targetHandle": "8-input-input-TestSuiteNode",
+      "type": "buttonedge",
+      "id": "7-output-TestStepNode-TestStepNode-8-input-input-TestSuiteNode"
+    }
+  ]
+}
