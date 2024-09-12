@@ -268,8 +268,7 @@ yarn-error.log*
 
 # Backup & Temporary files
 *.bak
-*.tmp
-*.temp
+
 
 # Other
 *.swp
